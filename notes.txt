@@ -1,6 +1,0 @@
-uvicorn: Is a lightning-fast ASGI server implementation, using uvloop and httptools. It handle the assyncronous web server for our application. 
-
-passlib[bcrypt]: Password hashing for python to use in our application.
-
-python-jose: Helps to deal with JSON Web Tokens (JWT) in Python. Basically it provides a simple and secure way to encode and decode JWTs for authentication and authorization purposes.
-
