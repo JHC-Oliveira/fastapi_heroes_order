@@ -4,3 +4,6 @@ passlib[bcrypt]: Password hashing for python to use in our application.
 
 python-jose: Helps to deal with JSON Web Tokens (JWT) in Python. Basically it provides a simple and secure way to encode and decode JWTs for authentication and authorization purposes.
 
+models/ from sqlalchemy import create_engine: This is used to create a connection to the database. It allows us to interact with the database and perform operations like creating tables, inserting data, etc.
+
+models/ from sqlalchemy.orm import declarative_base: This is used to create a base class for our database models. It allows us to define our database tables as Python classes, making it easier to work with the database.
