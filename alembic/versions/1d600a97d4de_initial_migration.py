@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: 9f3d7643e6d7
+Revision ID: 1d600a97d4de
 Revises: 
-Create Date: 2026-03-06 02:10:09.082150
+Create Date: 2026-03-06 02:25:01.338702
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9f3d7643e6d7'
+revision: str = '1d600a97d4de'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,7 +32,7 @@ def upgrade() -> None:
     )
     op.create_table('orders',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('status', sqlalchemy_utils.types.choice.ChoiceType(length=255), nullable=True),
+    sa.Column('status', sa.String(), nullable=True),
     sa.Column('user', sa.Integer(), nullable=False),
     sa.Column('total_price', sa.Float(), nullable=True),
     sa.Column('date', sa.DateTime(), nullable=True),
@@ -43,7 +43,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
-    sa.Column('size', sqlalchemy_utils.types.choice.ChoiceType(length=255), nullable=False),
+    sa.Column('size', sa.String(), nullable=False),
     sa.Column('unit_price', sa.Float(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),

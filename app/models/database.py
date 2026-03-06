@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, Float, F
 from sqlalchemy.orm import declarative_base
 
 #this choice type is like an ENUM but with tuple with key, value. It will be our order status.
-from sqlalchemy_utils.types import ChoiceType
+#from sqlalchemy_utils.types import ChoiceType
 from datetime import datetime
 
 # Create the connection with database
@@ -32,14 +32,16 @@ class User(Base):
 class Order(Base):
     __tablename__= "orders"
     
-    ORDER_STATUS = (
-        ("PENDING","PENDING"),
-        ("CANCELED", "CANCELED"),
-        ("FINALIZED", "FINALIZED")
-    )
+    # ORDER_STATUS = (
+    #     ("PENDING","PENDING"),
+    #     ("CANCELED", "CANCELED"),
+    #     ("FINALIZED", "FINALIZED")
+    # )
+    
+    #ChoiceType(choices=ORDER_STATUS)
     
     id = Column("id", Integer, primary_key=True, autoincrement=True)
-    status = Column("status", ChoiceType(choices=ORDER_STATUS)) #pending, canceled, finilized
+    status = Column("status", String) #pending, canceled, finilized
     user_id = Column("user", ForeignKey("users.id"), nullable=False) 
     total_price = Column("total_price", Float)
     #items =
@@ -55,16 +57,18 @@ class Order(Base):
 class OrderItem(Base):
     __tablename__ = "order_itens"
     
-    ITEM_SIZE = (
-        ("SMALL", "SMALL"),
-        ("MEDIUM", "MEDIUM"),
-        ("LARGE", "LARGE")
-    )
+    # ITEM_SIZE = (
+    #     ("SMALL", "SMALL"),
+    #     ("MEDIUM", "MEDIUM"),
+    #     ("LARGE", "LARGE")
+    # )
+    
+    #ChoiceType(choices=ITEM_SIZE
     
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     quantity = Column("quantity", Integer, nullable=False)
     hero_name = Column("name", String, nullable=False)
-    size = Column("size", ChoiceType(choices=ITEM_SIZE), nullable=False)
+    size = Column("size", String, nullable=False)
     unit_price = Column("unit_price", Float, nullable=False)
     order_id = Column("order_id", ForeignKey("orders.id"), nullable=False)
     
